@@ -1,7 +1,7 @@
 import { signIn, useSession } from "next-auth/react";
 import webauthnClientService from "../../services/webauthnClient";
 
-export default function useWelcome() {
+export default function useHomePage() {
   const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {

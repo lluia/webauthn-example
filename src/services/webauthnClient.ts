@@ -51,6 +51,7 @@ async function signIn(email: string) {
   }
 
   const credential = await startAuthentication(opt);
+  if (!credential) throw new Error("No credentials...");
 
   await nextAuthSignIn("credentials", {
     id: credential.id,

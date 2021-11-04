@@ -2,18 +2,18 @@ import { signOut } from "next-auth/react";
 import { Button, Box, Heading, Link, Text, Flex } from "@chakra-ui/react";
 import Image from "next/image";
 import Layout from "../../components/Layout/Layout";
-import aptoLogo from "../../../public/apto-logo.png";
+import typingCatImg from "../../../public/cat.gif";
 import React from "react";
-import useWelcome from "./useWelcome";
+import useHomePage from "./useHomePage";
 
-export default function WelcomePage() {
-  const { sessionStatus, userEmail, handleRegister } = useWelcome();
+export default function HomePage() {
+  const { sessionStatus, userEmail, handleRegister } = useHomePage();
 
   if (sessionStatus === "authenticated")
     return (
       <Layout>
-        <Box maxW="300px">
-          <Image alt="Apto logo" src={aptoLogo as any} />
+        <Box maxW="200px" mb="6">
+          <Image alt="Apto logo" src={typingCatImg} />
         </Box>
         <Heading as="h1" size="2xl">
           <Link href="https://webauthn.guide/" color="#1c59f6" isExternal>

@@ -106,7 +106,7 @@ async function verifyAndUpdateCredentials({
         credential: credential,
         expectedChallenge: challenge.value,
         expectedOrigin: process.env.WEBAUTHN_APP_ORIGIN!,
-        expectedRPID: process.env.WEBAUTHN_APP_ORIGIN!,
+        expectedRPID: process.env.WEBAUTHN_APP_DOMAIN!,
         authenticator: {
           credentialPublicKey: authenticator.credentialPublicKey
             .buffer as Buffer,
@@ -115,7 +115,6 @@ async function verifyAndUpdateCredentials({
         },
       }
     );
-
     if (!verified || !info) return null;
 
     await db.collection<DbCredential>("credentials").updateOne(

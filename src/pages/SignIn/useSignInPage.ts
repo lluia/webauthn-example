@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import webauthnClientService from "../../services/webauthnClient";
 
-export function useSignIn() {
+export default function useSignInPage() {
   const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(false);
   const router = useRouter();
@@ -28,9 +28,12 @@ export function useSignIn() {
 
   async function handleSignIn() {
     try {
-      webauthnClientService.signIn(email);
+      await webauthnClientService.signIn(email);
     } catch (error) {
-      console.log(error);
+      console.log(
+        `⚠️ – No biometric credentials stored for: ${email}, resorting to email signin 📨 `,
+        error
+      );
       await signIn("email", { email });
     }
   }

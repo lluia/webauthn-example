@@ -1,3 +1,3 @@
-import WelcomePage from "../src/pages/Welcome/Welcome.page";
+import HomePage from "../src/pages/Home/Home.page.tsx";
 
-export default WelcomePage;
+export default HomePage;

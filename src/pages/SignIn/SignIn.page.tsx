@@ -4,17 +4,17 @@ import { Box, Flex } from "@chakra-ui/layout";
 import React from "react";
 import Image from "next/image";
 import Layout from "../../components/Layout/Layout";
-import aptoLogo from "../../../public/apto-logo.png";
-import { useSignIn } from "./useSignIn";
+import catLogoImg from "../../../public/cat-logo.png";
+import useSignInPage from "./useSignInPage";
 
 export default function SignInPage() {
   const { handleEmailChange, handleKeySubmit, handleSignIn, isValid, email } =
-    useSignIn();
+    useSignInPage();
 
   return (
     <Layout>
-      <Box maxW="300px">
-        <Image alt="Apto logo" src={aptoLogo as any} />
+      <Box maxW="150px" mb="6">
+        <Image alt="Apto logo" src={catLogoImg as any} />
       </Box>
       <form onSubmit={(e) => e.preventDefault()}>
         <Flex>

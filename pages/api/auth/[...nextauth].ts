@@ -19,20 +19,22 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         name: "webauthn",
         credentials: {},
         async authorize(cred, req) {
-          return webauthnStorageService.verifyAndUpdateCredentials({
-            credential: {
-              id: req.body.id,
-              rawId: req.body.rawId,
-              type: req.body.type,
-              response: {
-                clientDataJSON: req.body.clientDataJSON,
-                authenticatorData: req.body.authenticatorData,
-                signature: req.body.authenticatorData,
-                userHandle: req.body.userHandle,
+          const result =
+            await webauthnStorageService.verifyAndUpdateCredentials({
+              credential: {
+                id: req.body.id,
+                rawId: req.body.rawId,
+                type: req.body.type,
+                response: {
+                  clientDataJSON: req.body.clientDataJSON,
+                  authenticatorData: req.body.authenticatorData,
+                  signature: req.body.signature,
+                  userHandle: req.body.userHandle,
+                },
               },
-            },
-            domain: process.env.WEBAUTHN_APP_DOMAIN!,
-          });
+              domain: process.env.WEBAUTHN_APP_DOMAIN!,
+            });
+          return result;
         },
       }),
     ],
